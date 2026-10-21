@@ -29,8 +29,8 @@ export default function DataInMotion() {
   };
 
   return (
-    <section className="w-full py-24 overflow-hidden bg-[#0a0a0a] flex flex-col gap-4">
-      <Marquee speed={25} reverse={false} className="py-4">
+    <section className="w-full py-12 md:py-16 overflow-hidden bg-[#0a0a0a] flex flex-col gap-4">
+      <Marquee speed={25} reverse={false} className="py-3">
         {renderWords(row1)}
         <Dot />
       </Marquee>

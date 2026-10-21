@@ -22,7 +22,7 @@
   --glow-blue: rgba(255, 255, 255, 0.08);
   --glow-violet: rgba(255, 255, 255, 0.05);
 
-  --section-gap: clamp(100px, 14vw, 280px);
+  --section-gap: clamp(60px, 6vw, 100px);
   --container-max: 1200px;
   --container-padding: clamp(24px, 5vw, 80px);
 }
@@ -53,6 +53,22 @@ html {
   scroll-behavior: auto;
   overflow-x: hidden;
   background: var(--bg-primary);
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
@@ -119,8 +135,10 @@ body {
 .container-main {
   width: 100%;
   max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 0 var(--container-padding);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
 }
 
 .section-spacing {
@@ -170,20 +188,22 @@ body {
   box-shadow: 0 0 60px var(--glow-violet), 0 0 120px rgba(255, 255, 255, 0.03);
 }
 
-/* ═══ Marquee ═══ */
+/* ═══ Marquee (Hardware Accelerated 3D) ═══ */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 @keyframes marquee-reverse {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 .animate-marquee {
   animation: marquee var(--duration, 30s) linear infinite;
+  will-change: transform;
 }
 .animate-marquee-reverse {
   animation: marquee-reverse var(--duration, 30s) linear infinite;
+  will-change: transform;
 }
 
 /* ═══ Noise texture overlay ═══ */
@@ -214,34 +234,44 @@ body {
 
 /* ═══ Reduced motion ═══ */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  .animate-marquee, .animate-marquee-reverse { animation: none; }
+  /* Allow smooth continuous animations like marquee to play while respecting user preferences for instant page transitions */
+}
+
+/* ═══ Mobile performance optimizations ═══ */
+@media (max-width: 767px) {
+  /* Parallax header fits mobile viewport with zero excess gap */
+  .parallax { height: 100vh; height: 100dvh; }
+  .parallax__header { height: 100vh; height: 100dvh; }
+  .parallax__visuals { min-height: 100%; height: 100%; }
+  
+  /* Reduce noise overlay on mobile for GPU savings */
+  .noise-overlay::after { opacity: 0.015; }
+  
+  /* Disable heavy glass-card backdrop-filter on mobile */
+  .glass-card { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(255, 255, 255, 0.06); }
+  .glass-card-subtle { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(255, 255, 255, 0.03); }
 }
 
 /* ═══ Osmo Parallax Component Styles ═══ */
 .parallax {
   position: relative;
   width: 100%;
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
 .parallax__header {
   position: relative;
   width: 100%;
-  height: 200vh;
+  height: 100vh;
+  height: 100dvh;
 }
 
 .parallax__visuals {
-  position: sticky;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 700px;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -388,3 +418,13 @@ body {
 /* ═══ Hide scrollbar utility ═══ */
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ═══ Marquee — pure CSS, compositor-thread ═══ */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee-scroll linear infinite;
+  will-change: transform;
+}

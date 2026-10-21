@@ -2,48 +2,92 @@
 
 import React from 'react';
 import { Timeline, TimelineEntry } from '@/components/ui/timeline';
-import { Calendar, MapPin, TrendingDown, CheckCircle2 } from 'lucide-react';
+import { Calendar, MapPin, TrendingDown, CheckCircle2, Sparkles } from 'lucide-react';
 
 const experienceData: TimelineEntry[] = [
   {
     title: 'PRESENT',
     content: (
-      <div className="w-full p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-dashed border-white/20 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+      <div className="w-full p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.12] backdrop-blur-sm shadow-[0_10px_35px_rgba(0,0,0,0.6)] hover:border-white/30 transition-all duration-300">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
           <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-              <span className="text-xs font-mono uppercase tracking-wider text-white/80 font-semibold">
-                Current Status
+            <div className="flex items-center gap-2 mb-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+              <span className="text-xs font-mono uppercase tracking-wider text-emerald-400/90 font-semibold">
+                Current Role
               </span>
             </div>
-            <h4 className="text-xl md:text-2xl font-display font-bold text-white tracking-tight">
-              Open to Opportunities
+            <h4 className="text-2xl md:text-3xl font-display font-bold text-white tracking-tight">
+              Data Analyst
             </h4>
-            <p className="text-white/50 text-sm mt-1">
-              Actively seeking Data Analyst &amp; AI roles
-            </p>
+            <div className="flex flex-wrap items-center gap-2.5 text-white/70 text-sm mt-1">
+              <span className="font-semibold text-white">Accenture</span>
+              <span className="text-white/20">·</span>
+              <span className="text-white/60">I&amp;F Decision Science Practitioner Associate</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5 text-xs font-mono text-white/40 bg-white/[0.04] border border-white/[0.08] px-3 py-1.5 rounded-full self-start">
-            <Calendar className="w-3.5 h-3.5 text-white/40" />
-            <span>2025 — PRESENT</span>
+          <div className="flex items-center gap-1.5 text-xs font-mono text-white/70 bg-white/[0.05] border border-white/[0.12] px-3.5 py-1.5 rounded-full self-start">
+            <Calendar className="w-3.5 h-3.5 text-white/50" />
+            <span>NOV 2025 — PRESENT</span>
           </div>
         </div>
 
-        <p className="text-sm text-white/50 leading-relaxed mb-4">
-          Building autonomous AI workflows, advancing machine learning pipelines, and sharpening predictive analytics capabilities.
-        </p>
+        {/* Highlight Metric / Impact Callout */}
+        <div className="mb-6 p-5 rounded-xl bg-white/[0.04] border border-white/15 flex items-center gap-5">
+          <div className="w-14 h-14 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-inner">
+            <Sparkles className="w-7 h-7 text-white" />
+          </div>
+          <div>
+            <div className="text-2xl md:text-3xl font-display font-bold heading-gradient">
+              Decision Science &amp; AI Automation
+            </div>
+            <div className="text-xs md:text-sm text-white/60 mt-0.5">
+              Driving actionable business insights, reporting automation, and scalable analytical solutions across enterprise operations.
+            </div>
+          </div>
+        </div>
 
-        <div className="flex flex-wrap gap-2 pt-3 border-t border-white/[0.06]">
-          <span className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-white/60">
-            Analytics Leadership
-          </span>
-          <span className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-white/60">
-            AI Workflows
-          </span>
-          <span className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-white/60">
-            ML Pipelines
-          </span>
+        {/* Responsibilities & Achievements */}
+        <ul className="space-y-3 mb-6">
+          {[
+            'Performed data analysis and reporting to generate actionable business insights and support strategic decision-making.',
+            'Developed and optimized dashboards, visualizations, and reporting solutions using Power BI, SQL, Python, and Advanced Excel.',
+            'Contributed to reporting automation, reducing manual effort and improving operational efficiency.',
+            'Applied AI-enabled technologies and automation methodologies to streamline workflows and enhance productivity.',
+            'Maintained data integrity, governance, and compliance standards while ensuring reporting accuracy and reliability.',
+            'Collaborated with stakeholders to translate business requirements into scalable analytical and reporting solutions.',
+            'Supported business operations through enterprise applications, including Workday and ServiceNow.',
+            'Drove continuous improvement through innovation, process optimization, and data-driven best practices.',
+          ].map((item, i) => (
+            <li key={i} className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
+              <CheckCircle2 className="w-4 h-4 text-white/40 shrink-0 mt-0.5" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Technologies Used */}
+        <div className="flex flex-wrap gap-2 pt-4 border-t border-white/[0.06]">
+          {[
+            'Power BI',
+            'SQL',
+            'Python',
+            'Advanced Excel',
+            'AI & Automation',
+            'Decision Science',
+            'Workday',
+            'ServiceNow',
+            'Reporting Automation',
+            'Data Governance',
+            'Strategic Insights',
+          ].map((tech) => (
+            <span
+              key={tech}
+              className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-white/70 hover:border-white/20 transition-colors"
+            >
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
     ),
@@ -51,7 +95,7 @@ const experienceData: TimelineEntry[] = [
   {
     title: '2025',
     content: (
-      <div className="w-full p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl shadow-[0_10px_35px_rgba(0,0,0,0.5)] hover:border-white/20 transition-all duration-300">
+      <div className="w-full p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm shadow-[0_10px_35px_rgba(0,0,0,0.5)] hover:border-white/20 transition-all duration-300">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
           <div>
             <h4 className="text-2xl md:text-3xl font-display font-bold text-white tracking-tight">
@@ -81,7 +125,7 @@ const experienceData: TimelineEntry[] = [
               15% Reduction
             </div>
             <div className="text-xs md:text-sm text-white/60 mt-0.5">
-              Achieved in call wait times through Looker Studio trend analytics & workforce optimization.
+              Achieved in call wait times through Looker Studio trend analytics &amp; workforce optimization.
             </div>
           </div>
         </div>
@@ -89,11 +133,10 @@ const experienceData: TimelineEntry[] = [
         {/* Responsibilities & Achievements */}
         <ul className="space-y-3 mb-6">
           {[
-            'Analyzed call-center telemetry including CRM records, call logs, and QA scores using Google Sheets to diagnose trends in AHT, ASA, and abandonment rate.',
-            'Engineered interactive, automated dashboards in Looker Studio enabling live executive monitoring of CSAT, FCR, and agent SLA adherence.',
-            'Forecasted daily and seasonal chat/call volumes through historical trend synthesis and root-cause analysis.',
-            'Streamlined workforce planning by aligning agent capacity with demand forecasts, reducing idle variance across shifts.',
-            'Partnered cross-functionally with QA leads to target underperforming service segments and elevate SLA fulfillment.',
+            'Analyzed call-center data from CRM records, call logs, and QA scores in Google Sheets to identify trends in AHT, ASA, and abandonment rate; contributed to a 15% reduction in call wait times.',
+            'Developed interactive Looker Studio dashboards for stakeholder monitoring of CSAT and FCR, supporting improvements in first-call resolution.',
+            'Forecasted call and chat volumes through trend and root-cause analysis to support workforce planning and align agent capacity with demand.',
+            'Monitored QA scores, CES, and SLA adherence; identified underperforming segments and collaborated on improvement actions.',
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
               <CheckCircle2 className="w-4 h-4 text-white/40 shrink-0 mt-0.5" />
@@ -117,29 +160,29 @@ const experienceData: TimelineEntry[] = [
     ),
   },
   {
-    title: '2023',
+    title: '2024',
     content: (
-      <div className="w-full p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl shadow-[0_10px_35px_rgba(0,0,0,0.5)] hover:border-white/20 transition-all duration-300">
+      <div className="w-full p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm shadow-[0_10px_35px_rgba(0,0,0,0.5)] hover:border-white/20 transition-all duration-300">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
           <div>
             <h4 className="text-2xl font-display font-bold text-white tracking-tight">
-              Data Analytics Intern
+              Android Developer Intern
             </h4>
             <div className="flex items-center gap-2 text-white/60 text-sm mt-1">
-              <span className="font-semibold text-white">Virtueinfo Soft Web</span>
+              <span className="font-semibold text-white">Virtueinfo Soft Web PVT LTD</span>
             </div>
           </div>
           <div className="flex items-center gap-1.5 text-xs font-mono text-white/50 bg-white/[0.04] border border-white/[0.08] px-3 py-1.5 rounded-full self-start">
             <Calendar className="w-3.5 h-3.5 text-white/40" />
-            <span>JUN 2023 — JUL 2023</span>
+            <span>MAR 2024 — SEP 2024</span>
           </div>
         </div>
 
         <ul className="space-y-3 mb-6">
           {[
-            'Executed exploratory data analysis (EDA) and data cleansing on client datasets under senior coordinator supervision.',
-            'Formulated analytical queries and data transformations to uncover operational trends and baseline performance metrics.',
-            'Collaborated on result-oriented analytical reporting frameworks for ongoing business intelligence audits.',
+            'Engineered native Android UI components, responsive mobile application screens, and client features.',
+            'Collaborated with senior developers on API integrations, state handling, and application debugging.',
+            'Conducted code reviews, lifecycle optimizations, and baseline mobile performance testing.',
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
               <CheckCircle2 className="w-4 h-4 text-white/40 shrink-0 mt-0.5" />
@@ -149,7 +192,7 @@ const experienceData: TimelineEntry[] = [
         </ul>
 
         <div className="flex flex-wrap gap-2 pt-4 border-t border-white/[0.06]">
-          {['Data Analysis', 'Data Cleansing', 'Statistical Reporting', 'SQL Queries'].map((tech) => (
+          {['Android Development', 'Java', 'Kotlin', 'Mobile UI', 'API Integration', 'Mobile Architecture'].map((tech) => (
             <span
               key={tech}
               className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-white/70 hover:border-white/20 transition-colors"
@@ -164,7 +207,7 @@ const experienceData: TimelineEntry[] = [
   {
     title: '2022',
     content: (
-      <div className="w-full p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl shadow-[0_10px_35px_rgba(0,0,0,0.5)] hover:border-white/20 transition-all duration-300">
+      <div className="w-full p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm shadow-[0_10px_35px_rgba(0,0,0,0.5)] hover:border-white/20 transition-all duration-300">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
           <div>
             <h4 className="text-2xl font-display font-bold text-white tracking-tight">
@@ -228,7 +271,7 @@ export default function ExperienceTimeline() {
         }
         description={
           <p className="text-white/60 text-sm md:text-base max-w-2xl font-light">
-            A track record of translating complex datasets into measurable operational efficiency, 15% lower wait times, and high-impact executive dashboards.
+            A proven trajectory across enterprise decision science and AI-enabled reporting at Accenture, paired with 15% wait-time reduction at TELUS Digital.
           </p>
         }
       />

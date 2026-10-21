@@ -10,18 +10,21 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let lastVisible = false;
     const handleScroll = () => {
       const threshold = window.innerHeight * 0.8;
       const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
-      setVisible(scrollTop > threshold);
+      const nowVisible = scrollTop > threshold;
+      if (nowVisible !== lastVisible) {
+        lastVisible = nowVisible;
+        setVisible(nowVisible);
+      }
     };
 
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
     };
   }, []);
 
@@ -56,7 +59,7 @@ export default function Navbar() {
           >
             <nav
               aria-label="Main Navigation"
-              className="pointer-events-auto w-full max-w-4xl h-14 md:h-16 px-3.5 md:px-5 rounded-full flex items-center justify-between bg-black/40 backdrop-blur-2xl backdrop-saturate-150 border border-white/[0.18] shadow-[0_12px_40px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.3),inset_0_-1px_1px_rgba(255,255,255,0.05)] transition-all"
+              className="pointer-events-auto w-full max-w-4xl h-14 md:h-16 px-3.5 md:px-5 rounded-full flex items-center justify-between bg-black/50 backdrop-blur-lg backdrop-saturate-150 border border-white/[0.18] shadow-[0_12px_40px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.3),inset_0_-1px_1px_rgba(255,255,255,0.05)] transition-all"
             >
           {/* Brand Monogram / Logo */}
           <div
@@ -128,7 +131,7 @@ export default function Navbar() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: -16 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed top-5 inset-x-4 max-w-sm mx-auto z-50 p-6 rounded-3xl bg-neutral-950/80 backdrop-blur-3xl border border-white/[0.18] shadow-[0_24px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.35)] flex flex-col gap-6"
+              className="fixed top-5 inset-x-4 max-w-sm mx-auto z-50 p-6 rounded-3xl bg-neutral-950/90 backdrop-blur-lg border border-white/[0.18] shadow-[0_24px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.35)] flex flex-col gap-6"
             >
               {/* Header inside Sheet */}
               <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">

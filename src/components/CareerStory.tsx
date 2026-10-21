@@ -26,14 +26,14 @@ const journeySteps: Step[] = [
   },
   {
     title: "AI & AUTOMATION",
-    description: "2025 · Present · Engineering autonomous AI agent workflows, prompt architectures, and machine learning pipelines.",
+    description: "2025 · Present · Decision Science Practitioner at Accenture — enterprise analytics, AI-enabled reporting workflows, and machine learning pipelines.",
     colorTheme: "monochrome",
   },
 ];
 
 export default function CareerStory() {
   return (
-    <section id="career" className="relative w-full py-24 md:py-32 container-main mx-auto z-10">
+    <section id="career" className="relative w-full py-16 md:py-24 container-main mx-auto z-10">
       <div className="flex flex-col gap-6 mb-8">
         <div className="flex items-center gap-3">
           <span className="w-10 h-[2px] bg-white/40" />

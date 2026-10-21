@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowUpRight, PieChart, Database, Code2, LineChart, Globe, Sparkles } from 'lucide-react';
+import { ArrowUpRight, PieChart, Database, Code2, LineChart, Globe, Sparkles, Smartphone, Wallet, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export interface ProjectEntry {
@@ -109,9 +109,33 @@ const projects: ProjectEntry[] = [
 ];
 
 const earlierProjects = [
-  { title: 'Quote M', year: '2021', type: 'Web App' },
-  { title: 'M Pay', year: '2021', type: 'Fintech UI' },
-  { title: 'House Price Prediction', year: '2022', type: 'ML Experiment' },
+  {
+    title: 'Quote M',
+    category: 'Android Native · Daily Quotes',
+    year: '2021',
+    description: 'Offline-first Android application featuring scheduled quote notifications, SQLite local database caching, and custom card swipe gestures.',
+    technologies: ['Android SDK', 'Java', 'SQLite', 'Material Design'],
+    icon: Smartphone,
+    url: 'https://github.com/yashsony24',
+  },
+  {
+    title: 'M Pay',
+    category: 'Fintech Interface · Android Flow',
+    year: '2021',
+    description: 'Digital payment wallet prototype modeling peer-to-peer money transfers, QR payment decoding, and interactive transaction history telemetry.',
+    technologies: ['Android Studio', 'Java', 'Payment APIs', 'UI/UX Prototyping'],
+    icon: Wallet,
+    url: 'https://github.com/yashsony24',
+  },
+  {
+    title: 'House Price Prediction',
+    category: 'Machine Learning · Python Regression',
+    year: '2022',
+    description: 'Supervised predictive model evaluating residential housing attributes with feature normalization, collinearity removal, and regression modeling.',
+    technologies: ['Python', 'Scikit-Learn', 'Pandas', 'Linear Regression'],
+    icon: TrendingUp,
+    url: 'https://github.com/yashsony24',
+  },
 ];
 
 export default function ProjectShowcase() {
@@ -124,6 +148,9 @@ export default function ProjectShowcase() {
   const setItemRef = useCallback((el: HTMLDivElement | null, i: number) => {
     itemRefs.current[i] = el;
   }, []);
+
+  const activeIndexRef = useRef(activeIndex);
+  activeIndexRef.current = activeIndex;
 
   // Stable scroll synchronization: only runs when user is NOT hovering over a card
   useEffect(() => {
@@ -138,7 +165,7 @@ export default function ProjectShowcase() {
         if (isInteractingRef.current) return;
 
         const viewportCenter = window.innerHeight * 0.45;
-        let closestIdx = activeIndex;
+        let closestIdx = activeIndexRef.current;
         let minDistance = Infinity;
 
         itemRefs.current.forEach((el, idx) => {
@@ -155,10 +182,10 @@ export default function ProjectShowcase() {
           }
         });
 
-        if (closestIdx !== activeIndex) {
+        if (closestIdx !== activeIndexRef.current) {
           setActiveIndex(closestIdx);
         }
-      }, 60);
+      }, 80); // Slightly higher debounce for mobile perf
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -166,7 +193,7 @@ export default function ProjectShowcase() {
       window.removeEventListener('scroll', handleScroll);
       if (scrollTimeout) clearTimeout(scrollTimeout);
     };
-  }, [activeIndex]);
+  }, []); // Empty deps — listener stays attached, reads from refs
 
   // Card hover handler: instantly switches active project and locks it open
   const handleCardActivate = (index: number) => {
@@ -178,9 +205,9 @@ export default function ProjectShowcase() {
 
   return (
     <section id="projects" ref={sectionRef} className="py-28 md:py-36 container-main relative">
-      {/* Background ambient lighting */}
-      <div className="pointer-events-none absolute top-1/4 -right-40 h-[500px] w-[500px] rounded-full bg-white/[0.02] blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-1/4 -left-40 h-[500px] w-[500px] rounded-full bg-white/[0.02] blur-[120px]" />
+      {/* Background ambient lighting — hidden on mobile for performance */}
+      <div className="pointer-events-none absolute top-1/4 -right-40 h-[500px] w-[500px] rounded-full bg-white/[0.02] blur-[120px] hidden md:block" />
+      <div className="pointer-events-none absolute bottom-1/4 -left-40 h-[500px] w-[500px] rounded-full bg-white/[0.02] blur-[120px] hidden md:block" />
 
       {/* Section Header */}
       <motion.div
@@ -258,7 +285,7 @@ export default function ProjectShowcase() {
 
               {/* Main Content Article Column */}
               <article
-                className={`flex-1 w-full flex flex-col rounded-3xl border p-4 sm:p-6 md:p-8 transition-all duration-500 backdrop-blur-2xl ${
+                className={`flex-1 w-full flex flex-col rounded-3xl border p-4 sm:p-6 md:p-8 transition-all duration-500 backdrop-blur-sm ${
                   isActive
                     ? 'border-white/30 bg-[#111111]/95 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_40px_rgba(255,255,255,0.06)] ring-1 ring-white/20'
                     : 'border-white/[0.07] bg-white/[0.02] hover:border-white/25 hover:bg-white/[0.035]'
@@ -266,7 +293,7 @@ export default function ProjectShowcase() {
               >
                 {/* Project Image */}
                 {entry.image && (
-                  <div className="relative mb-6 w-full h-64 sm:h-80 md:h-[380px] rounded-2xl overflow-hidden bg-black/40 border border-white/[0.08]">
+                  <div className="relative mb-6 w-full h-[200px] sm:h-80 md:h-[380px] rounded-2xl overflow-hidden bg-black/40 border border-white/[0.08]">
                     <img
                       src={entry.image}
                       alt={`${entry.title} visual`}
@@ -387,11 +414,11 @@ export default function ProjectShowcase() {
       </div>
 
       {/* Earlier Experiments Section */}
-      <div className="mt-28 md:mt-36 pt-16 border-t border-white/[0.06]">
+      <div className="mt-14 md:mt-20 pt-10 border-t border-white/[0.06]">
         <div className="flex items-center justify-between mb-8">
           <div>
             <h3 className="text-xl md:text-2xl font-display font-bold heading-gradient-subtle tracking-tight">
-              Earlier Experiments & Prototypes
+              Earlier Experiments &amp; Prototypes
             </h3>
             <p className="text-xs md:text-sm text-white/40 mt-1">
               Foundational code projects exploring payment flows, quotes, and early algorithms.
@@ -400,23 +427,57 @@ export default function ProjectShowcase() {
           <Code2 className="h-5 w-5 text-white/40" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {earlierProjects.map((p) => (
-            <div
-              key={p.title}
-              className="group p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-white/30 hover:bg-white/[0.04] transition-all duration-300 flex items-center justify-between"
-            >
-              <div>
-                <p className="text-sm font-semibold text-white group-hover:text-white/80 transition-colors">
-                  {p.title}
-                </p>
-                <p className="text-xs text-white/40 font-mono mt-0.5">{p.type}</p>
-              </div>
-              <span className="text-xs font-mono text-white/40 px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.05]">
-                {p.year}
-              </span>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {earlierProjects.map((p) => {
+            const Icon = p.icon;
+            return (
+              <a
+                key={p.title}
+                href={p.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-white/30 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white/60 group-hover:text-white group-hover:border-white/20 transition-all">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <span className="text-xs font-mono text-white/40 px-2.5 py-1 rounded-full bg-white/[0.03] border border-white/[0.06]">
+                      {p.year}
+                    </span>
+                  </div>
+
+                  <h4 className="text-base font-semibold text-white group-hover:text-white transition-colors mb-1">
+                    {p.title}
+                  </h4>
+                  <p className="text-xs text-white/40 font-mono mb-3">
+                    {p.category}
+                  </p>
+                  <p className="text-xs text-white/60 leading-relaxed mb-4">
+                    {p.description}
+                  </p>
+                </div>
+
+                <div>
+                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/[0.04]">
+                    {p.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/[0.03] text-white/60"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-end gap-1 text-xs text-white/40 group-hover:text-white font-mono mt-3 transition-colors">
+                    <span>Inspect</span>
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

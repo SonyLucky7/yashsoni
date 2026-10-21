@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Float, MeshDistortMaterial, MeshTransmissionMaterial, Environment, Stars } from '@react-three/drei';
+import { Float, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
 function FloatingGeometry() {
@@ -49,13 +49,13 @@ function FloatingGeometry() {
       {/* Main sphere — distorted glass */}
       <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.8}>
         <mesh ref={meshRef} position={[2.5, 0, -1]} scale={1.8}>
-          <icosahedronGeometry args={[1, 4]} />
+          <icosahedronGeometry args={[1, 3]} />
           <MeshDistortMaterial
             color="#ffffff"
             roughness={0.1}
             metalness={0.8}
-            distort={0.25}
-            speed={2}
+            distort={0.2}
+            speed={1.5}
             transparent
             opacity={0.4}
           />
@@ -65,7 +65,7 @@ function FloatingGeometry() {
       {/* Torus — wireframe */}
       <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
         <mesh ref={meshRef2} position={[-3, 1, -2]} scale={0.8}>
-          <torusGeometry args={[1, 0.3, 16, 48]} />
+          <torusGeometry args={[1, 0.3, 12, 32]} />
           <meshStandardMaterial
             color="#e0e0e0"
             wireframe
@@ -108,8 +108,7 @@ function FloatingGeometry() {
   );
 }
 
-function DataParticles() {
-  const count = 500;
+function DataParticles({ count }: { count: number }) {
   const pointsRef = useRef<THREE.Points>(null);
 
   const positions = useMemo(() => {
@@ -120,7 +119,7 @@ function DataParticles() {
       arr[i * 3 + 2] = (Math.random() - 0.5) * 20;
     }
     return arr;
-  }, []);
+  }, [count]);
 
   const colors = useMemo(() => {
     const arr = new Float32Array(count * 3);
@@ -137,7 +136,7 @@ function DataParticles() {
       arr[i * 3 + 2] = c.b;
     }
     return arr;
-  }, []);
+  }, [count]);
 
   useFrame((state) => {
     if (pointsRef.current) {
@@ -167,7 +166,7 @@ function DataParticles() {
 function GridPlane() {
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]}>
-      <planeGeometry args={[40, 40, 40, 40]} />
+      <planeGeometry args={[40, 40, 20, 20]} />
       <meshBasicMaterial
         color="#ffffff"
         wireframe
@@ -179,13 +178,27 @@ function GridPlane() {
 }
 
 export default function Scene3D() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   return (
     <div className="absolute inset-0 z-0">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 55 }}
-        dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+        dpr={[1, isMobile ? 1 : 1.5]}
+        gl={{
+          antialias: !isMobile,
+          alpha: true,
+          powerPreference: 'high-performance',
+          stencil: false,
+          depth: true,
+        }}
         style={{ background: 'transparent' }}
+        frameloop="always"
+        performance={{ min: 0.5 }}
       >
         <ambientLight intensity={0.3} />
         <directionalLight position={[5, 5, 5]} intensity={0.4} color="#ffffff" />
@@ -193,9 +206,8 @@ export default function Scene3D() {
         <pointLight position={[0, 0, 5]} intensity={0.3} color="#ffffff" />
 
         <FloatingGeometry />
-        <DataParticles />
+        <DataParticles count={isMobile ? 150 : 350} />
         <GridPlane />
-        <Stars radius={50} depth={50} count={1000} factor={2} fade speed={0.5} />
 
         <fog attach="fog" args={['#0a0a0a', 8, 25]} />
       </Canvas>

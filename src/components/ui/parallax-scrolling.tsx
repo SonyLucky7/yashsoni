@@ -3,7 +3,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
 
 export function ParallaxComponent() {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -13,54 +12,53 @@ export function ParallaxComponent() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const triggerElement = parallaxRef.current?.querySelector('[data-parallax-layers]');
+    const heroEl = parallaxRef.current;
+    if (!heroEl) return;
 
-    if (triggerElement) {
+    const layer1 = heroEl.querySelector('[data-parallax-layer="1"]');
+    const layer2 = heroEl.querySelector('[data-parallax-layer="2"]');
+    const layer3 = heroEl.querySelector('[data-parallax-layer="3"]');
+    const layer4 = heroEl.querySelector('[data-parallax-layer="4"]');
+
+    const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: triggerElement,
-          start: "0% 0%",
-          end: "100% 0%",
-          scrub: 0,
+          trigger: heroEl,
+          start: "top top",
+          end: "bottom top",
+          scrub: 0.6,
+          invalidateOnRefresh: true,
         }
       });
 
-      const layers = [
-        { layer: "1", yPercent: 70 },
-        { layer: "2", yPercent: 55 },
-        { layer: "3", yPercent: 40 },
-        { layer: "4", yPercent: 10 }
-      ];
+      if (layer1) tl.to(layer1, { yPercent: 40, ease: "none", force3D: true }, 0);
+      if (layer2) tl.to(layer2, { yPercent: 28, ease: "none", force3D: true }, 0);
+      if (layer3) tl.to(layer3, { yPercent: 18, ease: "none", force3D: true }, 0);
+      if (layer4) tl.to(layer4, { yPercent: 8, ease: "none", force3D: true }, 0);
+    }, heroEl);
 
-      layers.forEach((layerObj, idx) => {
-        tl.to(
-          triggerElement.querySelectorAll(`[data-parallax-layer="${layerObj.layer}"]`),
-          {
-            yPercent: layerObj.yPercent,
-            ease: "none"
-          },
-          idx === 0 ? undefined : "<"
-        );
-      });
-    }
-
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    // Refresh after all hero images load
+    const images = heroEl.querySelectorAll('img');
+    let loadedCount = 0;
+    images.forEach(img => {
+      if (img.complete) {
+        loadedCount++;
+      } else {
+        img.addEventListener('load', () => {
+          loadedCount++;
+          if (loadedCount === images.length) {
+            ScrollTrigger.refresh();
+          }
+        }, { once: true });
+      }
     });
 
-    lenis.on('scroll', ScrollTrigger.update);
-    const tickerCallback = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-    gsap.ticker.add(tickerCallback);
-    gsap.ticker.lagSmoothing(0);
+    if (loadedCount === images.length) {
+      ScrollTrigger.refresh();
+    }
 
     return () => {
-      ScrollTrigger.getAll().forEach(st => st.kill());
-      if (triggerElement) gsap.killTweensOf(triggerElement);
-      gsap.ticker.remove(tickerCallback);
-      lenis.destroy();
+      ctx.revert();
     };
   }, []);
 
@@ -108,9 +106,6 @@ export function ParallaxComponent() {
           {/* No shade overlay */}
         </div>
       </section>
-
-      {/* Content section that sits above the sticky parallax visuals */}
-      <section className="parallax__content" />
     </div>
   );
 }

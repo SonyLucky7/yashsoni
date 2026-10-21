@@ -20,9 +20,16 @@ export const ContainerScroll = ({
       setIsMobile(window.innerWidth <= 768);
     };
     checkMobile();
-    window.addEventListener("resize", checkMobile);
+    // Debounce resize to prevent thrashing on mobile address bar show/hide
+    let timer: ReturnType<typeof setTimeout>;
+    const debouncedCheck = () => {
+      clearTimeout(timer);
+      timer = setTimeout(checkMobile, 150);
+    };
+    window.addEventListener("resize", debouncedCheck);
     return () => {
-      window.removeEventListener("resize", checkMobile);
+      clearTimeout(timer);
+      window.removeEventListener("resize", debouncedCheck);
     };
   }, []);
 
@@ -36,13 +43,13 @@ export const ContainerScroll = ({
 
   return (
     <div
-      className="h-[40rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"
+      className="h-auto min-h-[30rem] md:min-h-[46rem] flex items-center justify-center relative p-2 md:p-8"
       ref={containerRef}
     >
       <div
-        className="py-10 md:py-40 w-full relative"
+        className="py-6 md:py-14 w-full relative"
         style={{
-          perspective: "1000px",
+          perspective: isMobile ? "none" : "1000px",
         }}
       >
         <Header translate={translate} titleComponent={titleComponent} />
@@ -60,7 +67,7 @@ export const Header = ({ translate, titleComponent }: any) => {
       style={{
         translateY: translate,
       }}
-      className="div max-w-5xl mx-auto text-center"
+      className="div max-w-5xl mx-auto text-center mb-4 md:mb-6"
     >
       {titleComponent}
     </motion.div>
@@ -77,15 +84,20 @@ export const Card = ({
   translate: MotionValue<number>;
   children: React.ReactNode;
 }) => {
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
   return (
     <motion.div
       style={{
-        rotateX: rotate,
-        scale,
+        rotateX: isMobile ? 0 : rotate,
+        scale: isMobile ? 1 : scale,
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}
-      className="max-w-5xl -mt-12 mx-auto h-[22rem] md:h-[40rem] w-full rounded-[30px] shadow-2xl"
+      className="max-w-5xl mx-auto h-auto min-h-[22rem] md:h-[38rem] w-full rounded-[30px] shadow-2xl"
     >
       <div className="h-full w-full overflow-hidden rounded-2xl bg-zinc-900 md:rounded-2xl md:p-4">
         {children}

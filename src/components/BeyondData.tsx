@@ -47,8 +47,8 @@ const STYLES = `
     inset 0 1px 1px rgba(255, 255, 255, 0.12),
     inset 0 -1px 2px rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -87,10 +87,10 @@ export default function BeyondData() {
 
       <section
         id="beyond"
-        className="relative z-10 w-full overflow-hidden bg-[#0a0a0a] py-28 md:py-36 border-t border-white/[0.06]"
+        className="relative z-10 w-full overflow-hidden bg-[#0a0a0a] py-16 md:py-24 border-t border-white/[0.06]"
       >
         {/* Ambient Aurora Glow & Grid */}
-        <div className="beyond-aurora absolute left-1/2 top-1/2 h-[60vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-[90px] pointer-events-none z-0" />
+        <div className="beyond-aurora absolute left-1/2 top-1/2 h-[60vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-[60px] pointer-events-none z-0 will-change-[transform,opacity] hidden md:block" />
         <div className="beyond-bg-grid absolute inset-0 z-0 pointer-events-none" />
 
         {/* Giant background shadow watermark name: restored to original bottom position with increased visibility */}

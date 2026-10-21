@@ -62,14 +62,13 @@ export const AnimatedDock = ({ className, items }: AnimatedDockProps) => {
       style={{ willChange: "transform" }}
     >
       {items.map((item, index) => (
-        <DockItem key={index} mouseX={mouseX}>
-          <Link
-            href={item.link}
-            target={item.target}
-            className="grow flex items-center justify-center w-full h-full text-primary-foreground focus:outline-none"
-          >
-            {item.Icon}
-          </Link>
+        <DockItem
+          key={index}
+          mouseX={mouseX}
+          href={item.link}
+          target={item.target}
+        >
+          {item.Icon}
         </DockItem>
       ))}
     </motion.div>
@@ -78,15 +77,16 @@ export const AnimatedDock = ({ className, items }: AnimatedDockProps) => {
 
 interface DockItemProps {
   mouseX: MotionValue<number>;
+  href: string;
+  target?: string;
   children: React.ReactNode;
 }
 
-export const DockItem = ({ mouseX, children }: DockItemProps) => {
-  const ref = useRef<HTMLDivElement>(null);
+export const DockItem = ({ mouseX, href, target, children }: DockItemProps) => {
+  const ref = useRef<HTMLAnchorElement>(null);
   const cachedCenterX = useRef<number>(0);
 
   // Measure center X once on mount, on hover enter, or on window resize
-  // This eliminates getBoundingClientRect layout thrashing during mouse move!
   const updateBounds = useCallback(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
@@ -100,8 +100,6 @@ export const DockItem = ({ mouseX, children }: DockItemProps) => {
     const handleRefresh = () => updateBounds();
     window.addEventListener("dock:refresh-bounds", handleRefresh, { passive: true });
     window.addEventListener("resize", handleRefresh, { passive: true });
-    // NOTE: No scroll listener — dock is position:fixed so scroll doesn't affect bounds.
-    // Removing this prevents 5× layout thrashing per Lenis scroll tick.
 
     return () => {
       window.removeEventListener("dock:refresh-bounds", handleRefresh);
@@ -131,19 +129,24 @@ export const DockItem = ({ mouseX, children }: DockItemProps) => {
   // Icon scale derived directly from smoothly sprung width
   const iconScale = useTransform(width, [42, 62], [1, 1.25]);
 
+  const isMail = href.startsWith("mailto:");
+
   return (
-    <motion.div
+    <motion.a
       ref={ref}
+      href={href}
+      target={target || (isMail ? undefined : "_blank")}
+      rel={isMail ? undefined : "noopener noreferrer"}
       style={{ width }}
-      className="aspect-square w-10.5 rounded-full bg-white text-[#0a0a0a] flex items-center justify-center shadow-sm cursor-pointer"
+      className="aspect-square w-10.5 rounded-full bg-white text-[#0a0a0a] flex items-center justify-center shadow-sm cursor-pointer transition-colors hover:bg-neutral-200 z-10"
     >
       <motion.div
         style={{ scale: iconScale }}
-        className="flex items-center justify-center w-full h-full grow pointer-events-none"
+        className="flex items-center justify-center w-full h-full pointer-events-none"
       >
         {children}
       </motion.div>
-    </motion.div>
+    </motion.a>
   );
 };
 

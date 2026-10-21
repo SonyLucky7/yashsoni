@@ -9,6 +9,10 @@ export default function Contact() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: '-100px' });
 
+  const handleContactClick = () => {
+    window.location.href = 'mailto:yashsony24@gmail.com';
+  };
+
   return (
     <section id="contact" className="section-spacing container-main" ref={containerRef}>
       <motion.div 
@@ -37,14 +41,20 @@ export default function Contact() {
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] as const }}
       >
-        <OriginButton 
-          onClick={() => window.location.href = "mailto:yashsony24@gmail.com"}
-          className="h-14 px-10 rounded-2xl text-base font-medium tracking-wide shadow-2xl group cursor-pointer"
+        <a
+          href="mailto:yashsony24@gmail.com"
+          className="inline-block"
+          aria-label="Send email to yashsony24@gmail.com"
         >
-          <Mail size={20} className="text-white mr-2" />
-          GET IN TOUCH
-          <ArrowUpRight size={20} className="text-white/60 ml-2 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-        </OriginButton>
+          <OriginButton 
+            onClick={handleContactClick}
+            className="h-14 px-10 rounded-2xl text-base font-medium tracking-wide shadow-2xl group cursor-pointer"
+          >
+            <Mail size={20} className="text-white mr-2" />
+            GET IN TOUCH
+            <ArrowUpRight size={20} className="text-white/60 ml-2 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </OriginButton>
+        </a>
       </motion.div>
     </section>
   );

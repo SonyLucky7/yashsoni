@@ -31,10 +31,10 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full py-24 md:py-32 container-main mx-auto z-10 overflow-visible"
+      className="relative w-full pt-20 md:pt-24 pb-24 md:pb-32 container-main mx-auto z-10 overflow-visible"
     >
       {/* Section Label */}
-      <div className="flex items-center gap-3 mb-16">
+      <div className="flex items-center gap-3 mb-12">
         <span className="w-10 h-[2px] bg-white/40" />
         <span className="text-label text-white/50 tracking-widest text-xs font-semibold">
           ABOUT
@@ -46,7 +46,7 @@ export default function About() {
 
         {/* ─── LEFT: Clean Portrait with ScrollExpand ─── */}
         <div className="relative w-full max-w-[480px] mx-auto">
-          <div className="relative w-full aspect-[3/4] min-h-[480px] sm:min-h-[520px] rounded-2xl overflow-hidden border border-white/[0.08] bg-[#0a0a0a] shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+          <div className="relative w-full aspect-[3/4] min-h-[350px] sm:min-h-[480px] rounded-2xl overflow-hidden border border-white/[0.08] bg-[#0a0a0a] shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
             <ScrollExpand
               src="/yash_photo_about.jpg"
               alt="Yash Soni"
@@ -76,7 +76,7 @@ export default function About() {
               Turning Curiosity Into Data-Driven Solutions.
             </h2>
             <p className="text-white/60 text-base leading-relaxed">
-              I&apos;m <span className="text-white font-medium">Yash Soni</span>, a Data Analyst 
+              I&apos;m <span className="text-white font-medium">Yash Soni</span>, a Data Analyst at <span className="text-white font-medium">Accenture</span> 
               and AI enthusiast focused on transforming raw, noisy datasets into high-conviction 
               business intelligence, automated pipelines, and intelligent analytical solutions.
             </p>
@@ -94,11 +94,11 @@ export default function About() {
             </div>
             <div className="flex items-center gap-2 text-white/60">
               <Briefcase size={14} className="text-white/40" />
-              <span>Data Analyst</span>
+              <span>Data Analyst @ Accenture</span>
             </div>
             <div className="flex items-center gap-2 text-white/60">
               <GraduationCap size={14} className="text-white/40" />
-              <span>BCA Graduate</span>
+              <span>B.Tech IT Graduate</span>
             </div>
           </div>
 

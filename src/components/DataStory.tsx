@@ -62,7 +62,7 @@ export default function DataStory() {
     <section
       id="data-story"
       ref={sectionRef}
-      className="relative w-full py-28 md:py-36 bg-[#0a0a0a] border-y border-white/[0.06] overflow-hidden"
+      className="relative w-full py-16 md:py-24 bg-[#0a0a0a] border-y border-white/[0.06] overflow-hidden"
     >
       <div className="container-main mx-auto">
         {/* Section Header */}
