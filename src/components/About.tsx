@@ -31,7 +31,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full pt-20 md:pt-24 pb-24 md:pb-32 container-main mx-auto z-10 overflow-visible"
+      className="relative w-full pt-44 md:pt-48 pb-24 md:pb-32 container-main mx-auto z-10 overflow-visible"
     >
       {/* Section Label */}
       <div className="flex items-center gap-3 mb-12">

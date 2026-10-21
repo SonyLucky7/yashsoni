@@ -53,6 +53,14 @@ export const metadata: Metadata = {
     description: "Data Analyst and AI specialist specializing in analytics, BI, Python, SQL, and automation.",
     creator: "@Yash_Soni24",
   },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   robots: { index: true, follow: true },
 };
 
