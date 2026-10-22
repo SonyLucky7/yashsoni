@@ -29,26 +29,25 @@ const STYLES = `
 }
 
 .beyond-giant-bg-text {
-  font-family: var(--font-syne, 'Syne', sans-serif);
-  font-size: clamp(38px, 11vw, 160px);
-  line-height: 1;
+  font-size: clamp(80px, 18vw, 250px);
+  line-height: 0.75;
   font-weight: 900;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.14);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 100%);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.09);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 70%, transparent 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
 
 @media (max-width: 768px) {
   .beyond-giant-bg-text {
-    font-size: clamp(26px, 8vw, 40px);
-    letter-spacing: 0.12em;
-    line-height: 1.2;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.06) 100%);
+    font-size: clamp(32px, 8.5vw, 46px);
+    line-height: 1;
+    letter-spacing: 0.06em;
+    bottom: 0.75rem !important;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
     -webkit-background-clip: text;
     background-clip: text;
   }
@@ -101,11 +100,19 @@ export default function BeyondData() {
 
       <section
         id="beyond"
-        className="relative z-10 w-full overflow-hidden bg-[#0a0a0a] pt-16 md:pt-24 pb-14 md:pb-20 border-t border-white/[0.06]"
+        className="relative z-10 w-full overflow-hidden bg-[#0a0a0a] pt-16 pb-20 md:py-24 border-t border-white/[0.06]"
       >
         {/* Ambient Aurora Glow & Grid */}
         <div className="beyond-aurora absolute left-1/2 top-1/2 h-[60vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-[60px] pointer-events-none z-0 will-change-[transform,opacity] hidden md:block" />
         <div className="beyond-bg-grid absolute inset-0 z-0 pointer-events-none" />
+
+        {/* Giant background shadow watermark name: restored to exact original bottom position with increased visibility on desktop; cleanly positioned on mobile without middle cut */}
+        <div
+          className="beyond-giant-bg-text absolute bottom-3 md:-bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap z-0 pointer-events-none select-none text-center"
+          aria-hidden="true"
+        >
+          YASH SONI
+        </div>
 
         <div className="container-main relative z-10">
           <div className="max-w-4xl">
@@ -142,7 +149,7 @@ export default function BeyondData() {
           </div>
 
           {/* Cards styled with glass-pill aesthetic */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 mb-6 md:mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 mb-8">
             {pillars.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -166,14 +173,6 @@ export default function BeyondData() {
                 </div>
               );
             })}
-          </div>
-
-          {/* Watermark Signature Name: positioned cleanly below the cards so it is never covered or sliced in the middle */}
-          <div
-            className="beyond-giant-bg-text relative w-full text-center pointer-events-none select-none overflow-hidden py-2"
-            aria-hidden="true"
-          >
-            <span>YASH SONI</span>
           </div>
         </div>
       </section>
