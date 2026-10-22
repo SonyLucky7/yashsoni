@@ -37,7 +37,7 @@ const projects: ProjectEntry[] = [
       'Trained a multivariate linear regression model to predict nightly listing rates with high interpretability',
     ],
     technologies: ['Python', 'Pandas', 'Seaborn', 'Folium', 'Linear Regression', 'Scikit-Learn'],
-    image: 'https://yashsony.netlify.app/assets/images/Screenshot_1.png',
+    image: '/projects/screenshot_1.png',
     button: {
       url: 'https://github.com/yashsony24',
       text: 'View Code & Notebooks',
@@ -58,7 +58,7 @@ const projects: ProjectEntry[] = [
       'Delivered automated KPI executive summaries with interactive drill-downs and department-level filters',
     ],
     technologies: ['Power BI', 'DAX', 'Data Modeling', 'Business Intelligence', 'HR Telemetry'],
-    image: 'https://yashsony.netlify.app/assets/images/Screenshot_2.png',
+    image: '/projects/screenshot_2.png',
     button: {
       url: 'https://github.com/yashsony24',
       text: 'Explore BI Implementation',
@@ -79,7 +79,7 @@ const projects: ProjectEntry[] = [
       'Formulated actionable recommendations for targeted membership loyalty tiers and discount incentives',
     ],
     technologies: ['SQL', 'MySQL', 'Relational Databases', 'Data Hygiene', 'Cohort Analysis'],
-    image: 'https://yashsony.netlify.app/assets/images/Screenshot_3.png',
+    image: '/projects/screenshot_3.png',
     button: {
       url: 'https://github.com/yashsony24',
       text: 'Inspect SQL Queries',
@@ -100,7 +100,7 @@ const projects: ProjectEntry[] = [
       'Architected offline-capable local caching and reactive UI bindings to maximize user engagement and session speed.',
     ],
     technologies: ['Java', 'Kotlin', 'Android Studio', 'State Management', 'RESTful APIs', 'Mobile Architecture'],
-    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&auto=format&fit=crop&q=80',
+    image: '/projects/foodies.jpg',
     button: {
       url: 'https://github.com/yashsony24',
       text: 'Explore Mobile Architecture',
@@ -154,7 +154,7 @@ export default function ProjectShowcase() {
 
   // Stable scroll synchronization: only runs when user is NOT hovering over a card
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout | null = null;
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
 
     const handleScroll = () => {
       // If user's mouse is anywhere over a project card, do NOT let scroll override it!
@@ -250,7 +250,6 @@ export default function ProjectShowcase() {
               key={entry.number}
               ref={(el) => setItemRef(el, index)}
               onMouseEnter={() => handleCardActivate(index)}
-              onMouseMove={() => handleCardActivate(index)}
               onClick={() => handleCardActivate(index)}
               aria-current={isActive ? 'true' : 'false'}
               className="group relative flex flex-col gap-5 md:flex-row md:gap-14 items-start cursor-pointer"

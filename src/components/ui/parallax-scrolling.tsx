@@ -70,7 +70,7 @@ export function ParallaxComponent() {
           <div data-parallax-layers className="parallax__layers">
             {/* Layer 1: Background */}
             <img
-              src="https://cdn.21st.dev/assets/mirror/a4/a43f4eae3459c461345ee676f12d6e1ddca65e8a5279a5af00d475b17ff83aea.webp"
+              src="/hero/hero_layer_1.webp"
               loading="eager"
               width="800"
               data-parallax-layer="1"
@@ -80,7 +80,7 @@ export function ParallaxComponent() {
 
             {/* Layer 2: Midground */}
             <img
-              src="https://cdn.21st.dev/assets/mirror/50/50ca6a0d36d2780bfcb469d6db7eaec0be7e0d2961ba69a63d2a1473b040338d.webp"
+              src="/hero/hero_layer_2.webp"
               loading="eager"
               width="800"
               data-parallax-layer="2"
@@ -95,7 +95,7 @@ export function ParallaxComponent() {
 
             {/* Layer 4: Foreground */}
             <img
-              src="https://cdn.21st.dev/assets/mirror/e1/e1c8137b5f971c3b3ec1a0f9e79b9c17018767005f844a10082b890472afecfb.webp"
+              src="/hero/hero_layer_4.webp"
               loading="eager"
               width="800"
               data-parallax-layer="4"

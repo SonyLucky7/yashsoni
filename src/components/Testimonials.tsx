@@ -9,32 +9,28 @@ const TESTIMONIALS: ScrollReelTestimonial[] = [
     quote:
       "Yash built automated Looker Studio dashboards that gave our stakeholders real-time visibility into AHT, ASA, and abandonment metrics. His workforce planning work directly cut call wait times by 15%. Dependable, sharp, and always a step ahead.",
     author: "Rohan Deshmukh — Ops & Workforce Analytics Lead, TELUS Digital",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
+    image: "/testimonials/testimonial_1.jpg",
     alt: "Rohan Deshmukh",
   },
   {
     quote:
       "Fast, disciplined, and genuinely curious about the 'why' behind the numbers. Whether writing SQL queries or cleaning messy datasets, Yash executed with precision and needed minimal oversight. He asks the right questions before writing a single line.",
     author: "Pooja Varma — Senior Analytics Coordinator, Virtueinfo Soft Web",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=80",
+    image: "/testimonials/testimonial_2.jpg",
     alt: "Pooja Varma",
   },
   {
     quote:
       "Yash quickly mastered our template architecture and deployment pipelines. His software engineering background gives him a real edge as an analyst — he understands how data is generated and piped under the hood.",
     author: "Chirag Shah — Founder & Technical Director, Scalezix Technologies",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80",
+    image: "/testimonials/testimonial_3.jpg",
     alt: "Chirag Shah",
   },
   {
     quote:
       "His predictive regression modeling and Power BI dashboards showed rigor well beyond coursework standards. Yash consistently bridges theory with practical insight — exactly the kind of thinking industry needs.",
     author: "Prof. S. K. Joshi — Project Guide, IT Dept, Indus University",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=80",
+    image: "/testimonials/testimonial_4.jpg",
     alt: "Prof. S. K. Joshi",
   },
 ];

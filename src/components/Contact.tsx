@@ -41,20 +41,15 @@ export default function Contact() {
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] as const }}
       >
-        <a
-          href="mailto:yashsony24@gmail.com"
-          className="inline-block"
+        <OriginButton 
+          onClick={handleContactClick}
           aria-label="Send email to yashsony24@gmail.com"
+          className="h-14 px-10 rounded-2xl text-base font-medium tracking-wide shadow-2xl group cursor-pointer"
         >
-          <OriginButton 
-            onClick={handleContactClick}
-            className="h-14 px-10 rounded-2xl text-base font-medium tracking-wide shadow-2xl group cursor-pointer"
-          >
-            <Mail size={20} className="text-white mr-2" />
-            GET IN TOUCH
-            <ArrowUpRight size={20} className="text-white/60 ml-2 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </OriginButton>
-        </a>
+          <Mail size={20} className="text-white mr-2" />
+          GET IN TOUCH
+          <ArrowUpRight size={20} className="text-white/60 ml-2 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+        </OriginButton>
       </motion.div>
     </section>
   );

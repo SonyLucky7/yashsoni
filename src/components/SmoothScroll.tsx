@@ -59,11 +59,8 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
 
     lenisRef.current = lenis;
 
-    // Synchronize Lenis scroll with GSAP ScrollTrigger and window scroll events
-    lenis.on('scroll', () => {
-      ScrollTrigger.update();
-      window.dispatchEvent(new Event('scroll'));
-    });
+    // Synchronize Lenis scroll with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
 
     // Drive Lenis directly via GSAP ticker for 100% frame synchronization
     const tickerUpdate = (time: number) => {

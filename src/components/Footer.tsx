@@ -93,15 +93,27 @@ export default function Footer() {
           </p>
           
           <nav className="flex flex-wrap items-center justify-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-sm text-white/40 hover:text-white transition-colors duration-300"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isPdf = link.href.endsWith('.pdf');
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target={isPdf ? '_blank' : undefined}
+                  rel={isPdf ? 'noopener noreferrer' : undefined}
+                  onClick={(e) => {
+                    if (link.href.startsWith('#')) {
+                      e.preventDefault();
+                      const target = document.querySelector(link.href);
+                      if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-sm text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
+                >
+                  {link.name}
+                </a>
+              );
+            })}
           </nav>
         </div>
       </div>

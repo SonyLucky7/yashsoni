@@ -64,7 +64,15 @@ export const Timeline = ({
             }
           }
           if (activated.length === 0) activated.push(0);
-          setActiveIndices(activated);
+          setActiveIndices((prev) => {
+            if (
+              prev.length === activated.length &&
+              prev.every((val, idx) => val === activated[idx])
+            ) {
+              return prev;
+            }
+            return activated;
+          });
         },
       });
     }, containerRef);
