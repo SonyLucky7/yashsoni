@@ -29,15 +29,45 @@ const STYLES = `
 }
 
 .beyond-giant-bg-text {
-  font-size: clamp(80px, 18vw, 250px);
-  line-height: 0.75;
+  font-family: var(--font-syne), var(--font-space-grotesk), sans-serif;
+  font-size: clamp(52px, 15vw, 240px);
+  line-height: 0.85;
   font-weight: 900;
-  letter-spacing: -0.04em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.09);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 70%, transparent 100%);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.7) 35%,
+    rgba(255, 255, 255, 0.18) 75%,
+    transparent 100%
+  );
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+  text-shadow: 0 0 35px rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .beyond-giant-bg-text {
+    font-size: clamp(36px, 11vw, 56px);
+    letter-spacing: 0.02em;
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.85) 30%,
+      rgba(255, 255, 255, 0.35) 65%,
+      transparent 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+    bottom: 0.75rem !important;
+  }
 }
 
 .beyond-glass-pill {
@@ -87,15 +117,18 @@ export default function BeyondData() {
 
       <section
         id="beyond"
-        className="relative z-10 w-full overflow-hidden bg-[#0a0a0a] py-16 md:py-24 border-t border-white/[0.06]"
+        className="relative z-10 w-full overflow-hidden bg-[#0a0a0a] pt-16 md:pt-24 pb-24 sm:pb-28 md:pb-36 border-t border-white/[0.06]"
       >
         {/* Ambient Aurora Glow & Grid */}
         <div className="beyond-aurora absolute left-1/2 top-1/2 h-[60vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-[60px] pointer-events-none z-0 will-change-[transform,opacity] hidden md:block" />
         <div className="beyond-bg-grid absolute inset-0 z-0 pointer-events-none" />
 
-        {/* Giant background shadow watermark name: restored to original bottom position with increased visibility */}
+        {/* Ambient backlight glow directly behind YASH SONI watermark */}
+        <div className="absolute bottom-3 md:bottom-2 left-1/2 -translate-x-1/2 w-[90%] max-w-[550px] h-[90px] bg-white/[0.05] blur-[35px] rounded-full pointer-events-none z-0" />
+
+        {/* Giant background watermark name with brilliant metallic gradient */}
         <div
-          className="beyond-giant-bg-text absolute -bottom-6 md:-bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap z-0 pointer-events-none select-none text-center"
+          className="beyond-giant-bg-text absolute bottom-3 sm:bottom-4 md:bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap z-0 pointer-events-none select-none text-center"
           aria-hidden="true"
         >
           YASH SONI
