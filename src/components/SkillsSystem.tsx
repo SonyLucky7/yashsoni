@@ -51,6 +51,7 @@ const skillCategories: SkillCategory[] = [
       { name: 'Data Cleaning', desc: 'Handling Outliers, Imputation, Scaling', icon: Filter },
       { name: 'Data Visualization', desc: 'Storytelling & Visual Encodings', icon: BarChart2 },
       { name: 'Statistical Analysis', desc: 'Variance, Regression, Significance', icon: TrendingUp },
+      { name: 'Reporting & Dashboarding', desc: 'Automated KPI Delivery & Governance', icon: LayoutDashboard },
     ],
   },
   {
@@ -58,8 +59,10 @@ const skillCategories: SkillCategory[] = [
     label: 'BUSINESS INTELLIGENCE',
     skills: [
       { name: 'Power BI', desc: 'DAX Measures, Data Modeling & Reports', icon: PieChart },
+      { name: 'Power Query', desc: 'ETL Pipelines, Data Modeling & M-Code', icon: Filter },
       { name: 'Looker Studio', desc: 'Stakeholder & Operational Dashboards', icon: LayoutDashboard },
       { name: 'Tableau', desc: 'Interactive Workbooks & Analytics', icon: Gauge },
+      { name: 'Workday', desc: 'Enterprise Reporting, Matrix Reports & Governance', icon: Layers },
       { name: 'Microsoft Excel', desc: 'VLOOKUP/XLOOKUP, Pivot Tables, Macros', icon: FileSpreadsheet },
     ],
   },
@@ -68,9 +71,10 @@ const skillCategories: SkillCategory[] = [
     label: 'PROGRAMMING',
     skills: [
       { name: 'Python', desc: 'Production Scripting & Data Pipelines', icon: Code2 },
+      { name: 'Kotlin & Java', desc: 'Android Architecture, Room DB & REST APIs', icon: Cpu },
       { name: 'JavaScript', desc: 'Web Interactivity & Frontend Logic', icon: Terminal },
       { name: 'HTML / CSS', desc: 'Modern Web Structure & Responsive Layouts', icon: FileCode },
-      { name: 'C / C++', desc: 'Foundational Systems & Algorithmic Logic', icon: Cpu },
+      { name: 'C / C++', desc: 'Foundational Systems & Algorithmic Logic', icon: Binary },
     ],
   },
   {

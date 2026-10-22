@@ -180,9 +180,9 @@ const experienceData: TimelineEntry[] = [
 
         <ul className="space-y-3 mb-6">
           {[
-            'Engineered native Android UI components, responsive mobile application screens, and client features.',
-            'Collaborated with senior developers on API integrations, state handling, and application debugging.',
-            'Conducted code reviews, lifecycle optimizations, and baseline mobile performance testing.',
+            'Developed a practical groceries application using Android Studio, building responsive UI components in Kotlin and Java while aligning with modern design guidelines.',
+            'Integrated RESTful APIs and optimized local data persistence using Room database and SQLite for seamless offline access.',
+            'Collaborated with senior developers to debug, identify bottlenecks, and optimize app performance and memory utilization.',
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
               <CheckCircle2 className="w-4 h-4 text-white/40 shrink-0 mt-0.5" />
@@ -192,7 +192,7 @@ const experienceData: TimelineEntry[] = [
         </ul>
 
         <div className="flex flex-wrap gap-2 pt-4 border-t border-white/[0.06]">
-          {['Android Development', 'Java', 'Kotlin', 'Mobile UI', 'API Integration', 'Mobile Architecture'].map((tech) => (
+          {['Kotlin', 'Java', 'Android Studio', 'Room Database', 'SQLite', 'RESTful APIs', 'Mobile Architecture'].map((tech) => (
             <span
               key={tech}
               className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-white/70 hover:border-white/20 transition-colors"

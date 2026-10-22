@@ -19,14 +19,21 @@ export default function Education() {
 
   const certifications = [
     {
-      title: 'Python Programming Certification',
+      title: 'Workday Reporting and Analytics Certification',
+      issuer: 'Enterprise HR & Operational Analytics',
+      date: 'Completed',
+      skills: ['Workday', 'Advanced Reporting', 'Matrix Reports', 'Data Governance'],
+      verified: true,
+    },
+    {
+      title: 'Certification in Python Programming',
       issuer: 'Verified Technical Credential',
       date: 'Completed',
       skills: ['Python 3', 'Pandas', 'NumPy', 'Data Cleaning', 'Automation Scripting'],
       verified: true,
     },
     {
-      title: 'Power BI Certification',
+      title: 'Power BI Certification (Udemy)',
       issuer: 'Udemy Certified — Business Intelligence',
       date: 'Completed',
       skills: ['Power BI Desktop', 'DAX Measures', 'Star Schema Data Modeling', 'Interactive Dashboards'],

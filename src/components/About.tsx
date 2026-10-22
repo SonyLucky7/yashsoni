@@ -5,8 +5,8 @@ import ScrollExpand from '@/components/ui/ScrollExpand';
 import { BarChart3, Brain, TrendingUp, MapPin, Briefcase, GraduationCap } from 'lucide-react';
 
 const skills = [
-  'SQL', 'Python', 'Power BI', 'Looker Studio', 'Pandas',
-  'NumPy', 'Machine Learning', 'ETL Pipelines', 'Workforce Planning',
+  'SQL', 'Python', 'Power BI', 'Looker Studio', 'Workday', 'Power Query',
+  'Pandas', 'NumPy', 'Machine Learning', 'ETL Pipelines', 'Workforce Planning',
 ];
 
 const capabilities = [
