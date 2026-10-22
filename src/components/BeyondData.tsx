@@ -29,30 +29,15 @@ const STYLES = `
 }
 
 .beyond-giant-bg-text {
-  font-family: var(--font-syne, 'Syne', sans-serif);
-  font-size: clamp(44px, 13vw, 220px);
-  line-height: 1;
+  font-size: clamp(80px, 18vw, 250px);
+  line-height: 0.75;
   font-weight: 900;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.14);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 75%, transparent 100%);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.09);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 70%, transparent 100%);
   -webkit-background-clip: text;
   background-clip: text;
-}
-
-@media (max-width: 768px) {
-  .beyond-giant-bg-text {
-    font-size: clamp(26px, 7.5vw, 38px);
-    letter-spacing: 0.15em;
-    line-height: 1.25;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.28);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.08) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    bottom: 1.5rem !important;
-  }
 }
 
 .beyond-glass-pill {
@@ -102,15 +87,15 @@ export default function BeyondData() {
 
       <section
         id="beyond"
-        className="relative z-10 w-full overflow-hidden bg-[#0a0a0a] pt-16 md:pt-24 pb-20 sm:pb-24 md:pb-32 border-t border-white/[0.06]"
+        className="relative z-10 w-full overflow-hidden bg-[#0a0a0a] py-16 md:py-24 border-t border-white/[0.06]"
       >
         {/* Ambient Aurora Glow & Grid */}
         <div className="beyond-aurora absolute left-1/2 top-1/2 h-[60vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-[60px] pointer-events-none z-0 will-change-[transform,opacity] hidden md:block" />
         <div className="beyond-bg-grid absolute inset-0 z-0 pointer-events-none" />
 
-        {/* Giant background shadow watermark name: fully inside section bounds, never clipped */}
+        {/* Giant background shadow watermark name: restored to original bottom position with increased visibility */}
         <div
-          className="beyond-giant-bg-text absolute bottom-3 sm:bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap z-0 pointer-events-none select-none text-center"
+          className="beyond-giant-bg-text absolute -bottom-6 md:-bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap z-0 pointer-events-none select-none text-center"
           aria-hidden="true"
         >
           YASH SONI
