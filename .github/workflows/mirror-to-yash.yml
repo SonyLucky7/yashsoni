@@ -1,0 +1,16 @@
+name: Mirror to yashsony24
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push to yashsony24/yashsoni
+        run: git push --force https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/yashsony24/yashsoni.git HEAD:main
