@@ -102,7 +102,10 @@ export default function Footer() {
                   target={isPdf ? '_blank' : undefined}
                   rel={isPdf ? 'noopener noreferrer' : undefined}
                   onClick={(e) => {
-                    if (link.href.startsWith('#')) {
+                    if (isPdf) {
+                      e.preventDefault();
+                      window.dispatchEvent(new CustomEvent('open-resume'));
+                    } else if (link.href.startsWith('#')) {
                       e.preventDefault();
                       const target = document.querySelector(link.href);
                       if (target) target.scrollIntoView({ behavior: 'smooth' });

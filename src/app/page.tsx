@@ -20,11 +20,13 @@ const Contact = dynamic(() => import('@/components/Contact'));
 const Footer = dynamic(() => import('@/components/Footer'));
 const FloatingDock = dynamic(() => import('@/components/FloatingDock'), { ssr: false });
 const AppleHelloIntro = dynamic(() => import('@/components/AppleHelloIntro'), { ssr: false });
+const ResumeModal = dynamic(() => import('@/components/ResumeModal'), { ssr: false });
 
 export default function Home() {
   return (
     <SmoothScroll>
       <AppleHelloIntro />
+      <ResumeModal />
       <ScrollProgress />
       <Navbar />
 

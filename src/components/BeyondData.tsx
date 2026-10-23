@@ -40,19 +40,6 @@ const STYLES = `
   background-clip: text;
 }
 
-@media (max-width: 768px) {
-  .beyond-giant-bg-text {
-    font-size: clamp(32px, 8.5vw, 46px);
-    line-height: 1;
-    letter-spacing: 0.06em;
-    bottom: 0.75rem !important;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-}
-
 .beyond-glass-pill {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
   box-shadow:
@@ -100,15 +87,15 @@ export default function BeyondData() {
 
       <section
         id="beyond"
-        className="relative z-10 w-full overflow-hidden bg-[#0a0a0a] pt-16 pb-20 md:py-24 border-t border-white/[0.06]"
+        className="relative z-10 w-full overflow-hidden bg-[#0a0a0a] py-16 md:py-24 border-t border-white/[0.06]"
       >
         {/* Ambient Aurora Glow & Grid */}
         <div className="beyond-aurora absolute left-1/2 top-1/2 h-[60vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-[60px] pointer-events-none z-0 will-change-[transform,opacity] hidden md:block" />
         <div className="beyond-bg-grid absolute inset-0 z-0 pointer-events-none" />
 
-        {/* Giant background shadow watermark name: restored to exact original bottom position with increased visibility on desktop; cleanly positioned on mobile without middle cut */}
+        {/* Giant background shadow watermark name: restored to original bottom position with increased visibility */}
         <div
-          className="beyond-giant-bg-text absolute bottom-3 md:-bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap z-0 pointer-events-none select-none text-center"
+          className="beyond-giant-bg-text absolute -bottom-6 md:-bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap z-0 pointer-events-none select-none text-center"
           aria-hidden="true"
         >
           YASH SONI

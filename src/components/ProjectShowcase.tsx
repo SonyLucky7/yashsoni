@@ -37,7 +37,7 @@ const projects: ProjectEntry[] = [
       'Trained a multivariate linear regression model to predict nightly listing rates with high interpretability',
     ],
     technologies: ['Python', 'Pandas', 'Seaborn', 'Folium', 'Linear Regression', 'Scikit-Learn'],
-    image: '/projects/screenshot_1.png',
+    image: '/projects/airbnb_analytics.jpg',
     button: {
       url: 'https://github.com/yashsony24',
       text: 'View Code & Notebooks',
@@ -58,7 +58,7 @@ const projects: ProjectEntry[] = [
       'Delivered automated KPI executive summaries with interactive drill-downs and department-level filters',
     ],
     technologies: ['Power BI', 'DAX', 'Data Modeling', 'Business Intelligence', 'HR Telemetry'],
-    image: '/projects/screenshot_2.png',
+    image: '/projects/hr_dashboard.jpg',
     button: {
       url: 'https://github.com/yashsony24',
       text: 'Explore BI Implementation',
@@ -79,7 +79,7 @@ const projects: ProjectEntry[] = [
       'Formulated actionable recommendations for targeted membership loyalty tiers and discount incentives',
     ],
     technologies: ['SQL', 'MySQL', 'Relational Databases', 'Data Hygiene', 'Cohort Analysis'],
-    image: '/projects/screenshot_3.png',
+    image: '/projects/zomato_analytics.jpg',
     button: {
       url: 'https://github.com/yashsony24',
       text: 'Inspect SQL Queries',
@@ -100,7 +100,7 @@ const projects: ProjectEntry[] = [
       'Architected offline-capable local caching and reactive UI bindings to maximize user engagement and session speed.',
     ],
     technologies: ['Java', 'Kotlin', 'Android Studio', 'State Management', 'RESTful APIs', 'Mobile Architecture'],
-    image: '/projects/foodies.jpg',
+    image: '/projects/foodies_app.jpg',
     button: {
       url: 'https://github.com/yashsony24',
       text: 'Explore Mobile Architecture',
@@ -296,7 +296,7 @@ export default function ProjectShowcase() {
                     <img
                       src={entry.image}
                       alt={`${entry.title} visual`}
-                      className={`w-full h-full object-cover object-top transition-transform duration-700 ${isActive ? 'scale-[1.02]' : 'group-hover:scale-[1.02]'}`}
+                      className={`w-full h-full object-cover object-center transition-transform duration-700 ${isActive ? 'scale-[1.02]' : 'group-hover:scale-[1.02]'}`}
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60 pointer-events-none" />

@@ -91,7 +91,7 @@ export default function Navbar() {
           {/* Action CTA: OriginButton */}
           <div className="flex items-center gap-2">
             <OriginButton
-              onClick={() => window.open('/resume.pdf', '_blank')}
+              onClick={() => window.dispatchEvent(new CustomEvent('open-resume'))}
               className="h-9 md:h-10 px-4 md:px-5 text-xs font-medium tracking-wider rounded-full border border-white/15 bg-white/[0.06] hover:bg-white/[0.12] text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2)]"
             >
               RESUME ↗
@@ -172,7 +172,7 @@ export default function Navbar() {
                 <OriginButton
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    window.open('/resume.pdf', '_blank');
+                    window.dispatchEvent(new CustomEvent('open-resume'));
                   }}
                   className="w-full h-11 text-xs font-medium tracking-wider rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 text-white shadow-lg"
                 >
